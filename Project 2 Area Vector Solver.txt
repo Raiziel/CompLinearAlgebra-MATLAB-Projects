@@ -1,0 +1,57 @@
+function [u,v] = plane(a,b,c)
+u = 1;
+v = [0,0,0,0];
+w = b-a;
+k = c-a;
+j =cross(w,k);
+normj=norm(j);
+if normj ==0
+u = -1;
+fprint(' Points collinear pass through \n ');
+v = [j(1),j(2),j(3),dot(a,j)];
+return
+else
+v = [j(1),j(2),j(3),dot(a,j)];
+end
+end
+
+
+
+function volume = parallelepiped(u,v,w)
+
+z=cross(u,v);
+normz=norm(z);
+if normz == 0
+    fprintf("Vectors are collinear\n")
+    return
+else 
+    p = dot(u,cross(v,w));
+    volume = norm(p);
+end
+end
+
+function area = parallelogram(a,b,c,d)
+x = d-c;
+y=d-a;
+u=b-a;
+v=c-a;
+
+p = cross(u,v);
+area = norm(p);
+end
+
+function area = triangle(a,b,c)
+
+u = b-a;
+v = c-a;
+w = cross(u,v);
+normw = norm(w);
+if normw == 0
+    fprintf("Vectors are collinear\n")
+    return
+else 
+    p = cross(u,v);
+    area = norm(p)/2;
+end
+end
+
